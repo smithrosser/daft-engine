@@ -1,26 +1,26 @@
 #include "Game.hpp"
-#include "BasicScene.hpp"
+#include "MineScene.hpp"
 
 namespace Daft
 {
 
 /**
-    @brief Construct a new Game object
+    @brief Creates a new Game object with parameters supplied.
 
-    @param width
-    @param height
-    @param title
+    @param width Window width
+    @param height Window height
+    @param title Window titles
  */
 Game::Game(int width, int height, const std::string& title)
 {
     _context->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-    _context->sceneMgr.push(SceneRef(new BasicScene(_context)));
+    _context->sceneMgr.push(SceneRef(new MineScene(_context)));
 }
 
 /**
-    @brief
+    @brief Starts the game loop.
 
-    @return int
+    @return int Non-zero for error
  */
 int Game::run()
 {
