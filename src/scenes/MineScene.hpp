@@ -49,6 +49,7 @@ private:
     void getMinesAroundCell(Cell& cell);
     void setCell(Cell& cell, CellState state);
     void revealCell(Cell& cell);
+    void gameOver();
     void revealAllCells();
     void handleCellClickEvent();
 };

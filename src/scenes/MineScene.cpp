@@ -41,7 +41,6 @@ void MineScene::init()
 
     populateMines();
     getMineNumbers();
-    // revealAllCells();
 }
 
 void MineScene::poll()
@@ -89,6 +88,7 @@ void MineScene::render(float dt)
 void MineScene::populateMines()
 {
     const int gridSize = GRID_COLS * GRID_ROWS;
+
     std::srand(std::time(nullptr));
 
     for (int i = 0; i < N_MINES; i++)
@@ -160,24 +160,26 @@ void MineScene::revealCell(Cell& cell)
 
         if (!_isGameOver)
         {
-            _isGameOver = true;
-            revealAllCells();
             setCell(cell, CellState::MineTripped);
+            gameOver();
         }
     }
     else
     {
         setCell(cell, CellState::Clicked);
-
-        // reveal adjacent empty cells
     }
 }
 
-void MineScene::revealAllCells()
+void MineScene::gameOver()
 {
+    _isGameOver = true;
+
     for (auto& cell : _grid)
     {
-        revealCell(cell);
+        if (cell.state != CellState::MineTripped)
+        {
+            revealCell(cell);
+        }
     }
 }
 
