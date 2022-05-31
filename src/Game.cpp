@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "MineScene.hpp"
+#include "FlapScene.hpp"
 
 namespace Daft
 {
@@ -14,7 +14,7 @@ namespace Daft
 Game::Game(int width, int height, const std::string& title)
 {
     _context->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-    _context->sceneMgr.push(SceneRef(new MineScene(_context)));
+    _context->sceneMgr.push(SceneRef(new FlapScene(_context)));
 }
 
 /**
