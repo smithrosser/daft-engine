@@ -24,8 +24,8 @@ public:
         int startWindow = SCREEN_HEIGHT / 2;
         float startPos = (std::rand() % startWindow) + SCREEN_HEIGHT / 3;
 
-        upper.setScale(2.f, -2.f);
-        lower.setScale(2.f, 2.f);
+        upper.setScale(sf::Vector2f(2.f, -2.f));
+        lower.setScale(sf::Vector2f(2.f, 2.f));
 
         setPosition(sf::Vector2f(SCREEN_WIDTH + 64, startPos));
     }
@@ -36,8 +36,8 @@ public:
     void setPosition(sf::Vector2f newPos)
     {
         pos = newPos;
-        upper.setPosition(newPos.x, (newPos.y - 64) - 24);
-        lower.setPosition(newPos.x, newPos.y + 24);
+        upper.setPosition(sf::Vector2f(newPos.x, (newPos.y - 64) - 24));
+        lower.setPosition(sf::Vector2f(newPos.x, newPos.y + 24));
     }
 
     void move(float dt)

@@ -6,6 +6,7 @@
 #include "Pipe.hpp"
 #include "Scene.hpp"
 #include <SFML/Graphics.hpp>
+#include <array>
 #include <list>
 
 namespace Daft

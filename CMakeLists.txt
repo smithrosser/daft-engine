@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 project(daft-engine)
 
 set(SFML_STATIC_LIBRARIES TRUE)
-find_package(SFML COMPONENTS graphics REQUIRED)
+add_subdirectory(SFML)
 
 file(GLOB_RECURSE SRCS src/*.cpp src/*.hpp)
 

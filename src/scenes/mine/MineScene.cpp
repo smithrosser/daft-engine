@@ -29,11 +29,11 @@ void MineScene::init()
             cell.x = x;
             cell.state = CellState::Unclicked;
             cell.sprite.setTexture(_context->assetMgr.getTexture("unclicked"));
-            cell.sprite.setPosition(x * CELL_SIZE, y * CELL_SIZE);
-            cell.sprite.setScale(CELL_SCALE, CELL_SCALE);
+            cell.sprite.setPosition(sf::Vector2f(x * CELL_SIZE, y * CELL_SIZE));
+            cell.sprite.setScale(sf::Vector2f(CELL_SCALE, CELL_SCALE));
             cell.text.setFont(_context->assetMgr.getFont("numbers"));
             cell.text.setCharacterSize(24);
-            cell.text.setPosition(x * CELL_SIZE + (CELL_SIZE / 4), y * CELL_SIZE);
+            cell.text.setPosition(sf::Vector2f(x * CELL_SIZE + (CELL_SIZE / 4), y * CELL_SIZE));
 
             _grid.push_back(cell);
         }

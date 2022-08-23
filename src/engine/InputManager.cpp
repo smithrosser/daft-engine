@@ -16,7 +16,7 @@ bool InputManager::isEntityClicked(sf::Sprite entity, sf::Mouse::Button button, 
 {
     if (sf::Mouse::isButtonPressed(button))
     {
-        sf::IntRect tempRect(entity.getPosition().x, entity.getPosition().y, entity.getGlobalBounds().width, entity.getGlobalBounds().height);
+        sf::IntRect tempRect(sf::Vector2i(entity.getPosition().x, entity.getPosition().y), sf::Vector2i(entity.getGlobalBounds().width, entity.getGlobalBounds().height));
 
         return tempRect.contains(sf::Mouse::getPosition(window));
     }

@@ -18,15 +18,15 @@ void FlapScene::init()
     // bird
     _bird.vel = { 0, 0 };
     _bird.sprite.setTexture(_context->assetMgr.getTexture("birdDown"));
-    _bird.sprite.setPosition(SCREEN_WIDTH / 4.f, SCREEN_HEIGHT / 4.f);
-    _bird.sprite.setScale(BIRD_SCALE, BIRD_SCALE);
+    _bird.sprite.setPosition(sf::Vector2f(SCREEN_WIDTH / 4.f, SCREEN_HEIGHT / 4.f));
+    _bird.sprite.setScale(sf::Vector2f(BIRD_SCALE, BIRD_SCALE));
 
     // game over text
     _gameOverText.setFont(_context->assetMgr.getFont("text"));
     _gameOverText.setCharacterSize(84);
     _gameOverText.setOutlineColor(sf::Color::Black);
     _gameOverText.setOutlineThickness(4);
-    _gameOverText.setPosition(SCREEN_WIDTH / 2 - 20, SCREEN_HEIGHT / 2 - 40);
+    _gameOverText.setPosition(sf::Vector2f(SCREEN_WIDTH / 2 - 20, SCREEN_HEIGHT / 2 - 40));
     _gameOverText.setString(":(");
 
     // score text
@@ -34,7 +34,7 @@ void FlapScene::init()
     _scoreText.setCharacterSize(40);
     _scoreText.setOutlineColor(sf::Color::Black);
     _scoreText.setOutlineThickness(2);
-    _scoreText.setPosition(0.05f * SCREEN_WIDTH, 0.05f * SCREEN_HEIGHT);
+    _scoreText.setPosition(sf::Vector2f(0.05f * SCREEN_WIDTH, 0.05f * SCREEN_HEIGHT));
     _scoreText.setString(std::to_string(_score));
 
     createPipe();
@@ -107,7 +107,7 @@ void FlapScene::update(float dt)
         }
 
         // kill bird if it bottoms out
-        if (_bird.sprite.getGlobalBounds().contains(SCREEN_WIDTH / 4.f, SCREEN_HEIGHT))
+        if (_bird.sprite.getGlobalBounds().contains(sf::Vector2f(SCREEN_WIDTH / 4.f, SCREEN_HEIGHT)))
         {
             gameOver();
         }
@@ -121,7 +121,7 @@ void FlapScene::update(float dt)
             sf::FloatRect upperPipe = nearestPipe.upper.getGlobalBounds();
             sf::FloatRect lowerPipe = nearestPipe.lower.getGlobalBounds();
 
-            if (upperPipe.intersects(bird) || lowerPipe.intersects(bird))
+            if (upperPipe.contains(bird.getPosition()) || lowerPipe.contains(bird.getPosition()))
             {
                 gameOver();
             }
@@ -176,12 +176,12 @@ void FlapScene::createCloud()
     for (auto& cloud : _clouds)
     {
         cloud.setTexture(_context->assetMgr.getTexture("cloud"));
-        cloud.setScale(2.0f, 2.0f);
+        cloud.setScale(sf::Vector2f(2.0f, 2.0f));
     }
 
-    _clouds[0].setPosition(10, 80);
-    _clouds[1].setPosition(80, 10);
-    _clouds[2].setPosition(220, 40);
+    _clouds[0].setPosition(sf::Vector2f(10, 80));
+    _clouds[1].setPosition(sf::Vector2f(80, 10));
+    _clouds[2].setPosition(sf::Vector2f(220, 40));
 }
 
 void FlapScene::incrementScore()
